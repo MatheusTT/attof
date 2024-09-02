@@ -1,0 +1,30 @@
+{
+  "Images": [
+    ".bmp", ".gif", ".ico", ".jfif", ".jpeg",
+    ".jpg", ".png", ".tif", ".tiff", ".webp"
+  ],
+  "Audios": [
+    ".aif",".cda",".mid",".midi",".mp3",
+    ".mpa",".ogg",".wav",".wma",".wpl"
+  ],
+  "Videos": [
+    ".avi",".flv",".h264",".m4v",".mkv",
+    ".mov",".mp4",".mpeg",".mpg",".wmv"
+  ],
+  "Documents": [
+    ".doc",".docx",".odp",".ods",".odt",
+    ".pdf",".pps",".ppt",".pptx",".rtf",
+    ".txt",".wpd",".xls",".xlsm",".xlsx"
+  ],
+  "Compressed Files": [
+    ".7z",".arj",".deb",".pkg",".rar",
+    ".rpm",".tar.gz",".z",".zip",".iso",
+    ".bz2",".xz",".flatpakref"
+  ],
+  "Executables": [
+    ".ahk",".apk",".app",".appimage",".bat",
+    ".bin",".com",".command",".exe",".gadget",
+    ".ipa",".jar",".msi",".script",".x86_64",
+    ".cmd",".wsf"
+  ]
+}

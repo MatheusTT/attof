@@ -1,0 +1,12 @@
+{
+  "folders": {
+    "Imagens": "Images",
+    "Arquivos Compactados": "Compressed Files",
+    "Executáveis": "Executables",
+    "Documentos": "Documents",
+    "Outros": "Others"
+  },
+  "ignore": [
+    "wallpapers"
+  ]
+}
