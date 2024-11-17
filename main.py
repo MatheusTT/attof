@@ -7,16 +7,19 @@ import re
 this_path: str = path.dirname(path.realpath(__file__))
 sort_path: str = path.join(path.expanduser("~"), "Downloads")
 
+
 ## Funções
 # Pegar um dicionário de um json
 def json_to_dict(file_path: str) -> dict:
-  with open(file_path, 'r', encoding='utf8') as json_file:
+  with open(file_path, "r", encoding="utf8") as json_file:
     return json.load(json_file)
+
 
 # Pegar a chave por um valor em um dicionário
 def get_dict_key(dict: dict, value_to_get: Any) -> Any:
-  key: list = [key for key,value in dict.items() if value == value_to_get]
+  key: list = [key for key, value in dict.items() if value == value_to_get]
   return key[0]
+
 
 # Seleciona em qual folder o arquivo ten que ir dependendo da extensão dele
 def correct_folder(json_dict: dict, file_ext: str, file_types: dict) -> str:
@@ -27,14 +30,16 @@ def correct_folder(json_dict: dict, file_ext: str, file_types: dict) -> str:
 
   return "Others"
 
+
 # Se o arquivo existir, o novo nome dele vai ter um (num) no final
 def dont_overwrite(file_name: str, file_ext: str) -> str:
-  pattern: str = "^(0?[0-9]|[1-9][0-9])$"
-  if re.search(pattern, file_name):
-    found: list = re.findall(pattern, file_name)[0]
-    number: int = int("".join([s for s in found if s.isdigit()])) + 1
-    return re.sub(pattern, f"({number})", file_name) + file_ext
+  pattern: str = r"\((\d+)\)"
+  found: list = re.findall(pattern, file_name)
+  if found:
+    number = int(found[-1])
+    return re.sub(pattern, f"({number + 1})", file_name) + file_ext
   return f"{file_name} (1){file_ext}"
+
 
 def main() -> None:
   ## Definindo variáveis
@@ -52,12 +57,18 @@ def main() -> None:
         if path.isfile(path.join(sort_path, file)):
           extension: str = path.splitext(file)[-1]
           folder_to_go: str = correct_folder(preset, extension, file_types)
-          destination: str = path.join(sort_path, get_dict_key(p_folders, folder_to_go), file)
+          destination: str = path.join(
+            sort_path, get_dict_key(p_folders, folder_to_go), file
+          )
         else:
           if file not in p_folders.keys():
-            destination: str = path.join(sort_path, get_dict_key(p_folders, "Others"), file)
+            destination: str = path.join(
+              sort_path, get_dict_key(p_folders, "Others"), file
+            )
         while path.exists(destination):
-          destination: str = path.join(path.dirname(destination), dont_overwrite(*path.splitext(destination)))
+          destination: str = path.join(
+            path.dirname(destination), dont_overwrite(*path.splitext(destination))
+          )
         move_to[file] = destination
 
   # Mover os arquivos (e criar as pastas caso elas não existam)
@@ -75,6 +86,7 @@ def main() -> None:
     if path.exists(folder_path):
       if listdir(folder_path) == []:
         rmdir(folder_path)
+
 
 if __name__ == "__main__":
   main()

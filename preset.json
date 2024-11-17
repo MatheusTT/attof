@@ -6,7 +6,5 @@
     "Documentos": "Documents",
     "Outros": "Others"
   },
-  "ignore": [
-    "wallpapers"
-  ]
+  "ignore": ["wallpapers"]
 }
